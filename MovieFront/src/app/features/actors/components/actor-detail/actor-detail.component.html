@@ -1,0 +1,64 @@
+<div class="content">
+    <div class="content-header">
+        <div class="profile-name">
+            
+            <!-- <div class="profile">
+                <h2>
+                    <i class="fa fa-arrow-left"></i>
+                </h2>
+            </div> -->
+            @if(actor.profile) {
+                <div class="profile-image">
+                    <img [src]="findImage(actor.id)" [alt]="actor.profile"/>
+                </div>
+            }@else {
+                <div class="profile">
+                    <h1>
+                        <i class="fa fa-user-circle"></i>
+                    </h1>
+                </div>
+            }
+            <div class="name">
+                <h2>{{actor.name}}</h2>
+                <p>{{actor.location.street}}, {{actor.location.nation}}</p>
+            </div>
+        </div>
+        <div class="actor-link">
+            <a class="lnk lnk-primary">
+                <i class="fa fa-edit"></i>
+                Edit
+            </a>
+            <a class="lnk lnk-danger" (click)="delete(actor.id)">
+                <i class="fa fa-trash"></i>
+                Delete
+            </a>
+        </div>
+    </div>
+
+    <div class="content-body">
+        <div class="card">
+            <div class="card-body">
+                <div class="info-container">
+                    <h4>Birth date : <span>{{actor.birthDate | date : "yyyy-MM-dd"}}</span></h4>
+                    <h4>Gender : <span>{{actor.gender}}</span></h4>
+                    <h4>Biography :</h4>
+                    <p>{{actor.biography}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-body">
+        <h1>His other movies</h1>
+        <div class="list">
+            <div class="crd" *ngFor="let movie of movies" (click)="goToDetail(movie.id)">
+                <div class="crd-jacket" >
+                    <img [src]="findPoster(movie.id)" [alt]="movie.jacket"/>
+                </div>
+                <div class="title">
+                    <p>{{movie.title | truncate : 10}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

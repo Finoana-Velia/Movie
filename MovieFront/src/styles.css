@@ -1,0 +1,178 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+    margin : 0;
+    padding : 0;
+    box-sizing: border-box;
+    font-family : 'Poppins', sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.content-header {
+    display : flex;
+    justify-content: space-between;
+    padding : 10px;
+}
+
+.content-header h3{
+    margin-top : 5px;
+}
+
+.content-body {
+    width : 100%;
+    padding : 10px;
+}
+
+.content-body-grid {
+    width : 100%;
+    display : grid;
+    grid-template-columns : 2fr 1fr;
+    grid-gap : 20px;
+    align-items : flex-start;
+    padding : 20px;
+}
+
+.card {
+    background : #fff;
+    padding : 10px;
+    min-height : 350px;
+    box-shadow : 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.card-header {
+    padding : 10px;
+    border-bottom: 1px solid #f5f5f5;
+    display : flex;
+    justify-content : space-between;
+}
+
+.card-footer {
+    padding : 10px;
+    border-top : 1px solid #f5f5f5;
+}
+
+.card-body {
+    margin-top : 5px;
+}
+
+table {
+    width : 100%;
+    border-collapse : collapse;
+    background : #fff;
+    overflow-x: scroll;
+}
+
+table td, table tr {
+    border-bottom : 1px solid rgba(0,0,0,0.1);
+}
+
+thead td {
+    padding : 20px;
+    font-weight : 600;
+}
+
+tbody tr:hover {
+    background : #edf5db;
+}
+
+tbody tr:last-child {
+    border-bottom : none;
+}
+
+.btn {
+    border : none;
+    cursor : pointer;
+    padding : 10px;
+    border-radius : 5px;
+    color : #fff;
+    font-weight : 600;
+    box-shadow : 4px 8px 4px 0 rgba(0,0,0,0.2);
+}
+
+.btn-light {
+    background : #fff; 
+    padding : 5px;
+    border : 1px solid #000;
+    color : #000;
+}
+
+/* .actions {
+    display: flex;
+    flex-direction : row;
+    flex-wrap: wrap;
+    justify-content : space-around;
+} */
+
+.btn-primary {
+    background : linear-gradient(45deg,#2B32B2,#1488CC);
+    
+}
+
+.btn-danger {
+    background : linear-gradient(45deg, #FF0844, #FFB199);
+}
+
+.btn-success {
+    /* background : #1D976C; */
+    background : linear-gradient(45deg, #1D976C, #93F9B9);
+}
+
+.btn-secondary {
+    background : #4E515C
+}
+
+.lnk {
+    display : flex;
+    text-decoration : none;
+    margin-right : 5px;
+    cursor : pointer;
+    color : #000;
+}
+
+.lnk-primary {
+    color : #2B32B2;
+}
+
+.lnk-primary:hover {
+    text-decoration : underline;
+}
+
+.lnk-danger {
+    color : #FF0844;
+}
+
+.lnk-danger:hover {
+    text-decoration : underline;
+}
+
+/* error component */
+.error-content {
+    margin : auto;
+    width : 600px;
+    padding : 20px;
+    height : 600px;
+}
+
+.error-message {
+    text-align: center;
+    font-size : 1.2em;
+}
+
+.error-img {
+    width : 100%;
+}
+
+/* MEDIA QUERIES */
+@media (max-width : 760px) {
+    .optional {
+        display: none;
+    }
+}
+
+@media (max-width : 1008px) {
+    .content-body-grid {
+        grid-template-columns: 1fr;
+    }
+}

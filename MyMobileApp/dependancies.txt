@@ -1,0 +1,10 @@
+HAS BEEN INSTALLED
+- twrnc : tailwind react native
+- navigation : stack/botom-tabs
+- reanimated
+- redux
+- react-native-heroicons => npm install react-native-heroicons
+- react-native-snap-carousel => npm install react-native-snap-carousel
+- linearGradient => search in google
+
+

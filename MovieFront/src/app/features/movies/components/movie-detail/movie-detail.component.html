@@ -1,0 +1,33 @@
+<div class="content">
+    <div class="detail">
+        <div class="crd" [style]="'background : url('+getPoster(movie.id)+') 100%;'">
+            <div class="demi-gradient">
+               
+            </div> 
+        </div>
+        <div class="crd-header">
+            <h2>{{movie.title}}</h2>
+            <p>Release . {{movie.release | date : 'yyyy'}} . {{movie.duration}}</p>
+            <p>{{movie.type}}</p>
+        </div>
+        <div class="crd-body">
+            <h3>Description</h3>
+            <p>{{movie.description}}</p>
+        </div>
+        <div class="crd-body">
+            <h3>Actors</h3>
+            <div class="actor-list">
+                <div class="actor-crd" *ngFor="let actor of movie.actors" (click)="gotToDetail(actor.id)">
+                    <div class="actor-profile">
+                        <img [src]="getProfile(actor.id)" [alt]="actor.profile"/>
+                    </div>
+                    <div class="actor-name">
+                        <p>{{actor.name | truncate : 10}}</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+</div>

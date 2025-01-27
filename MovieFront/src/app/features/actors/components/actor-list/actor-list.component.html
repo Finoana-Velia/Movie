@@ -1,0 +1,88 @@
+<div class="content">
+    <div class="content-header">
+        <button class="btn btn-primary" (click)="openMenu(null)">
+            <i class="fa fa-plus"></i>
+            Add
+        </button>
+    </div>
+    <div class="content-body">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Actor's List</h2>
+                
+                    <form (ngSubmit)="searchItem(actorResponse.number,actorResponse.size)">
+                        <input 
+                        type="text" class="search-form" 
+                        placeholder="Search by name" name="search" [(ngModel)]="search"/>
+                        <button class="btn-success">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                
+            </div>
+            <div class="card-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <td class="optional">Id</td>
+                            <td>Profile</td>
+                            <td>Name</td>
+                            <td>Birth Date</td>
+                            <td class="optional">Gender</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="actorResponse">
+                        <tr *ngFor="let actor of actorResponse.content">
+                            <td class="optional">{{actor.id}}</td>
+                            <td>
+                                @if(actor.profile) {
+                                    <div class="img-row">
+                                        <img [src]="getProfile(actor.id)" [alt]="actor.profile" />
+                                    </div>
+                                }@else {
+                                    <div class="img-row">
+                                        <i class="fa fa-user-circle"></i>
+                                    </div>
+                                }
+                            </td>
+                            <td>
+                                <a class="lnk" [routerLink]="['actor',actor.id]">
+                                    {{actor.name}}
+                                </a>
+                            </td>
+                            <td>{{ actor.birthDate | date : 'yyyy-MM-dd'}}</td>
+                            <td class="optional">{{actor.gender}}</td>
+                            <td class="actions">
+                                <a class="lnk lnk-primary" (click)="openMenu(actor)">
+                                    <i class="fa fa-edit"></i>
+                                    Edit
+                                </a>
+                                <a class="lnk lnk-danger" (click)="delete(actor.id)">
+                                    <i class="fa fa-trash"></i>
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p *ngIf="!actorResponse">No Actor saved</p>
+            </div>
+            <div class="card-footer">
+                 <app-pagination [pagination]="actorResponse" (data)="getDataFromPagination($event)"></app-pagination>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="menu" *ngIf="menuOpen">
+    <div class="menu-left">
+        <div class="menu-left-content">
+            <div class="menu-left-header">
+                <h3>Actor Form</h3>
+                <a (click)="closeMenu()">&times;</a>
+            </div>
+            <app-actor-form [actor]="actorUpdate"></app-actor-form>
+        </div>
+    </div>
+</div>

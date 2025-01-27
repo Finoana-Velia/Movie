@@ -1,0 +1,26 @@
+.opener {
+    margin-top : 5px;
+    background :#999;
+    position : fixed;
+    top : 0;
+    left : 180px;
+    height : 40px;
+    width : 50px;
+    border-radius : 10px;
+    cursor : pointer;
+    z-index : 3;
+}
+
+.opener i {
+    color : #fff;
+    font-size : 24px;
+}
+
+.opener.close {
+    left : 45px;
+}
+
+.opener:hover {
+    animation : slideButton 2s ease infinite;
+    animation-delay : 0.2s;
+}

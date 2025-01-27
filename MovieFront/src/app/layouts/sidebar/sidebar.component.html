@@ -1,0 +1,45 @@
+<div [ngClass]="isClosed ? 'sidebar close' : 'sidebar'">
+    <div [ngClass]="isClosed ? 'logo-container close' : 'logo-container'">
+        <a href="#">
+            <img alt="logo" src="../../../assets/logo/GASY.png"/>
+        </a>
+    </div>
+    <ul>
+        <li>
+            <a routerLink="/">
+                <div class="icon">
+                    <i class="fa fa-home"></i>
+                    <span [ngClass]="isClosed ? 'close' : ''">Home</span>
+                </div>
+                Home
+            </a>
+        </li>
+        <li>
+            <a routerLink="/">
+                <div class="icon">
+                    <i class="fa fa-users"></i>
+                    <span [ngClass]="isClosed ? 'close' : ''">Actors</span>
+                </div>
+                Actors
+            </a>
+        </li>
+        <li>
+            <a routerLink="/movies">
+                <div class="icon">
+                    <i class="fa fa-film"></i>
+                    <span [ngClass]="isClosed ? 'close' : ''">Movies</span>
+                </div>
+                Movies
+            </a>
+        </li>
+        <li>
+            <a routerLink="/serie">
+                <div class="icon">
+                    <i class="fa fa-video-camera"></i>
+                    <span [ngClass]="isClosed ? 'close' : ''">Series</span>
+                </div>
+                Series
+            </a>
+        </li>
+    </ul>
+</div>

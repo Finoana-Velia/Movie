@@ -1,0 +1,197 @@
+.poster {
+    width : 150px;
+    height : 200px;
+    background : #999;
+    color : #f5f5f5;
+    border-radius : 10px;
+    display : flex;
+    flex-direction : column;
+    justify-content : center;
+    align-items : center;
+    text-align : center;
+}
+
+.poster img {
+    width : 100%;
+    height : 100%;
+    object-fit : cover;
+    object-position : center;
+    border-radius : 10px;
+}
+
+.upload-poster button {
+    margin : 10px;
+}
+
+.container {
+    display : flex;
+}
+
+.movie-form {
+    width : 100%;
+    padding : 10px;
+}
+
+.form-group {
+    display : flex;
+    justify-content: space-between;
+}
+
+.form-class {
+    display: block;
+    width : 70%;
+}
+
+.actor-class {
+    margin : 10px;
+}
+
+.form-text {
+    background: #f5f5f5;
+    padding : 10px;
+    width : 50%;
+    border : none;
+    outline : none;
+    border-bottom : 1px solid #000;
+    margin : 5px;
+}
+
+.search-form {
+    width : 80%;
+    padding : 10px;
+    border-radius : 50px;
+    outline : none;
+    background : #fff;
+}
+
+.cast-list {
+    display : flex;
+    flex-wrap: wrap;
+}
+
+.avatar {
+    cursor : pointer;
+    margin-right : 2px;
+    position : relative;
+}
+
+.avatar:hover .rm {
+    opacity : 1;
+}
+
+.avatar img {
+    width : 30px;
+    height :30px;
+    object-fit : cover;
+    object-position :center;
+    border-radius : 50%;
+}
+
+.avatar:hover .icon{
+    width : 40px;
+    height : 40px;
+}
+
+
+.avatar p {
+    font-size : 30px;
+}
+
+.avatar p:hover {
+    font-size : 40px;
+}
+
+/* actor */
+.actor-list {
+    height : 185px;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width : 5px;
+    padding : 15px;
+}
+
+.actor-card {
+    display : flex;
+    justify-content : space-between;
+    margin : 10px;
+}
+
+.actor-info {
+    display : flex;
+    justify-content: space-between;
+    width : 80%;
+}
+
+.actor-info h3 {
+    margin-bottom: 10px;
+    margin-top : 10px;
+}
+
+.select {
+    border : none;
+    background : transparent;
+    cursor : pointer;
+}
+
+.select i {
+    font-size : 20px;
+}
+
+.actor-picture h3 {
+    font-size : 50px;
+}
+
+.actor-picture img {
+    width : 50px;
+    height : 50px;
+    border-radius : 50%;
+}
+
+.flex-right {
+    text-align: right;
+}
+
+.flex-right button{
+    margin-left : 10px;
+}
+
+.rm {
+    border : none;
+    color : #fff;
+    background-color: red;
+    border-radius : 50%;
+    padding : 1px 2px;
+    position : absolute;
+    top :0;
+    right : 0;
+    opacity : 0;
+    cursor : pointer;
+}
+
+@media (max-width : 702px) {
+    .form-class {
+        display : flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width : 660px) {
+    .container {
+        display : flex;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width : 558px) {
+    .form-group {
+        display : block;
+    }
+
+    .form-group input,.form-group textarea,.form-group select{
+        width : 100%;   
+    }
+
+    .form-group textarea {
+        height : 150px;
+    }
+}

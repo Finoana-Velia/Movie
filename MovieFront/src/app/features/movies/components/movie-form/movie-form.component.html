@@ -1,0 +1,134 @@
+<div class="content">
+    <div class="content-body-grid">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Movie's Form</h2>
+            </div>
+            <div class="card-body">
+                <div class="container">
+                    <div class="upload-poster">
+                        @if(url) {
+                            <div class="poster">
+                                <img [src]="url" alt="movies jackets"/>
+                            </div>
+                        }@else {
+                            <div class="poster">
+                                <i class="fa fa-film"></i>
+                                <p>Upload the movie's poster</p>
+                            </div>
+                        }
+                        <button class="btn btn-success" (click)="activateInputFile()">
+                            Choose image
+                        </button>
+                    </div>
+                    <div class="movie-form">
+                        <form [formGroup]="movie_form" (ngSubmit)="postMethod()">
+                            <input type="file" #jacket formControlName="jacket" 
+                            (change)="onSelectFile($event)" hidden/>
+                            <div class="form-group">
+                                <input type="text" placeholder="Title" class="form-text" formControlName="title"/>
+                                <select class="form-text" formControlName="type">
+                                    <option value="Unknow">Type...</option>
+                                    <option value="Action">Action</option>
+                                    <option value="Adventure">Adventure</option>
+                                    <option value="Comedy">Comedy</option>
+                                    <option value="Drama">Drama</option>
+                                    <option value="Horror">Horror</option>
+                                    <option value="Science Fiction">Science Fiction</option>
+                                    <option value="Fantasy">Fantasy</option>
+                                    <option value="Thriller">Thriller</option>
+                                    <option value="Mystery">Mystery</option>
+                                    <option value="Romance">Romance</option>
+                                    <option value="Musical">Musical</option>
+                                    <option value="Animation">Animation</option>
+                                    <option value="Documentary">Documentary</option>
+                                    <option value="Biopic">Biopic/Biographical</option>
+                                    <option value="Historical">Historical</option>
+                                    <option value="Western">Western</option>
+                                    <option value="War">War</option>
+                                </select>
+                            </div>
+                            <div class="form-class">
+                                <label>Duration</label>
+                                <input type="time" class="form-text" formControlName="duration"/>
+                            </div>
+                            <div class="form-class">
+                                <label>Release</label>
+                                <input type="Date" class="form-text" formControlName="release"/>
+                            </div>
+                            <div class="form-group">
+                                <div class="actor-class">
+                                    <label>Actors :</label>
+                                    <div class="cast-list">
+                                        <div *ngFor="let person of actorList">
+                                            <div class="avatar" [title]="person.name">
+                                                @if(person.profile) {
+                                                    <img [src]="getProfile(person.id)" [alt]="person.profile" class="icon"/>
+                                                }
+                                                @else {
+                                                    <p class="icon"><i class="fa fa-user-circle"></i></p>
+                                                }
+                                                <button type="button" class="rm" (click)="remove(person.id)">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <textarea class="form-text" placeholder="Description" formControlName="description">
+                                </textarea>
+                            </div>
+                            <input type="submit" value="submit" #submitter hidden/>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-footer flex-right">
+                    <button class="btn btn-secondary" (click)="goBack()">Cancel</button>
+                    <button class="btn btn-success" (click)="onSubmit()">Save</button>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Actor's Casting</h2>
+            </div>
+            <div class="card-body">
+                <div class="search-actor">
+                    <form (ngSubmit)="searchItem(actorResponse.number,actorResponse.size)">
+                        <input 
+                        type="text" placeholder="search by name" 
+                        class="search-form" [(ngModel)]="search" name="search"/>
+                        <button class="btn btn-success">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="actor-list" *ngIf="actorResponse">
+                    <div class="actor-card" *ngFor="let actor of actorResponse.content">
+                        @if (actor.profile) {
+                            <div class="actor-picture">
+                                <img [src]="getProfile(actor.id)" [alt]="actor.profile"/>
+                            </div>
+                        }@else {
+                            <div class="actor-picture">
+                                 <h3>
+                                    <i class="fa fa-user-circle"></i>
+                                 </h3>
+                            </div>
+                        }
+                        <div class="actor-info">
+                            <h3>{{actor.name}}</h3>
+                            <button class="select" (click)="addActor(actor)">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-footer">
+                <app-pagination [pagination]="actorResponse" (data)="getDataFromPagination($event)"></app-pagination>
+            </div>
+        </div>
+    </div>
+</div>

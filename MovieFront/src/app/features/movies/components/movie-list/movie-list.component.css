@@ -1,0 +1,45 @@
+.search-movie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding : 10px;
+    width : 100%;
+}
+
+.search-movie input {
+    width : 80%;
+    padding : 10px;
+    border-radius: 10px;
+    outline : none;
+}
+
+.search-movie form {
+    width : 70%;
+}
+
+thead {
+    background : linear-gradient(90deg, #1D976C, #93F9B9);
+}
+
+thead td {
+    color : #fff;
+}
+
+.create-movies {
+    display : flex;
+    justify-content : center;
+}
+
+.poster {
+    width : 100px;
+    height : 150px;
+    padding : 2px;
+}
+
+.poster img {
+    width : 100%;
+    height : 100%;
+    object-fit: cover;
+    object-position : center;
+    border-radius : 10px;
+}

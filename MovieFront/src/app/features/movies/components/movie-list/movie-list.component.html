@@ -1,0 +1,72 @@
+<div class="content">
+    <div class="search-movie">
+        <form (ngSubmit)="searchMovies(movieResponse.number,movieResponse.size)">
+            <input 
+            type="text" placeholder="Search by title"
+            name="searchTitle" [(ngModel)]="searchTitle"/>
+            <button class="btn btn-success">
+                <i class="fa fa-search"></i>
+                Search
+            </button>
+        </form>
+    </div>
+
+    <div class="content-body">
+        <div class="card">
+            <div class="card-header">
+                <h2>Movie's List</h2>
+            </div>
+            <div class="card-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <td class="optional">Id</td>
+                            <td>Jacket</td>
+                            <td>Title</td>
+                            <td class="optional">Release</td>
+                            <td>Type</td> 
+                            <td class="optional">Duration</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let movie of movieResponse.content">
+                            <td class="optional">{{movie.id}}</td>
+                            <td>
+                                <div class="poster">
+                                    <!-- <img alt="poster source" src="../../../../../assets/images/job1.png"/> -->
+                                    <img [src]="getPoster(movie.id)" [alt]="movie.jacket"/>
+                                </div>
+                            </td>
+                            <td>
+                                <a class="lnk" [routerLink]="['/movie',movie.id]">{{movie.title}}</a>
+                            </td>
+                            <td class="optional">{{movie.release}}</td>
+                            <td>{{movie.type}}</td>
+                            <td class="optional">{{movie.duration}}</td>
+                            <td>
+                                <a class="lnk lnk-primary" [routerLink]="['form',movie.id]">
+                                    <i class="fa fa-edit"></i>
+                                    Edit
+                                </a>
+                                <a class="lnk lnk-danger">
+                                    <i class="fa fa-trash"></i>
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+                <div class="create-movies">
+                    <button routerLink="/movies/form" type="button" class="btn btn-success" >
+                        <i class="fa fa-plus"></i>
+                        Add
+                    </button>
+                </div>
+                <app-pagination [pagination]="movieResponse" (data)="getDataFromPagination($event)"></app-pagination>
+            </div>
+        </div>
+    </div>
+</div>

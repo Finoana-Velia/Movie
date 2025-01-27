@@ -1,0 +1,27 @@
+<div class="content-body">
+    <h1>Action movies</h1>
+    <div class="list">
+        <div class="crd" *ngFor="let movie of actions" (click)="goToDetail(movie.id)">
+            <div class="crd-jacket" >
+                <img [src]="findPoster(movie.id)" [alt]="movie.jacket"/>
+            </div>
+            <div class="title">
+                <p>{{movie.title | truncate : 10}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-body">
+    <h1>Adventure movies</h1>
+    <div class="list">
+        <div class="crd" *ngFor="let movie of adventure" (click)="goToDetail(movie.id)">
+            <div class="crd-jacket" >
+                <img [src]="findPoster(movie.id)" [alt]="movie.jacket"/>
+            </div>
+            <div class="title">
+                <p>{{movie.title | truncate : 10}}</p>
+            </div>
+        </div>
+    </div>
+</div>
