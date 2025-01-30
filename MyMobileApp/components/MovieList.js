@@ -39,8 +39,8 @@ export default function MovieList({title,data}) {
                                 <View style={tw`py-1 mr-4 flex-1 justify-center items-center`}>
                                     <Image 
                                         style={styles.image}
-                                        // source={item.image}
-                                        source={{ uri : getJackets(item.id)}}
+                                        source={item.image}
+                                        // source={{ uri : getJackets(item.id)}}
                                     />
                                     <Text style={tw`text-neutral-300 ml-1`}>
                                         {

@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { Dimensions,Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import tw from 'twrnc';
+import { getJackets } from "../API/MovieAPI";
 
 var {width, height} = Dimensions.get('window');
 
@@ -16,7 +17,8 @@ export default function MovieCard({item}){
         >
             <Image 
                 style={styles.image}
-                source={item.image}
+                // source={item.image}
+                source={{ uri : getJackets(item.id)}}
             />
             <View>
                 <Text style={tw`text-neutral-300 ml-1`}>{item.title}</Text>

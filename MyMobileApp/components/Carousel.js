@@ -3,13 +3,34 @@ import tw from 'twrnc';
 import MovieCard from "./MovieCard";
 import { useNavigation } from "@react-navigation/native";
 import { actual } from "../helpers/data";
+import { useEffect, useState } from "react";
+import { getAllMovies } from "../API/MovieAPI";
+import DisplayLoading from "./Loading";
 
 
 export default function Carousel(){
 
     const navigation = useNavigation();
 
+    const [all , setAll] = useState(null);
+
+    
     const data = actual;
+    useEffect(() => {
+        getAllMovies().then(
+            response => {
+                setTimeout(() => {
+                    setAll(response);
+                },10000)
+            }
+        )
+    },[]);
+
+    const _displayLoading = () => {
+        return (
+            <DisplayLoading />
+        );
+    }
     
     return(
         // <View>
@@ -40,14 +61,18 @@ export default function Carousel(){
                 contentContainerStyle={{paddingHorizontal : 15}}
             >
                 {
-                    data.map((item,index) => {
+                    all ?
+                    all.map((item,index) => {
                         return (
                             <View key={index}>
                                 <MovieCard item={item}/>
                             </View>
                         )
-                    })
+                    }) :
+                    _displayLoading()
                 }   
+                
+                
             </ScrollView>
         </View>
     )

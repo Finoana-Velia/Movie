@@ -14,28 +14,30 @@ export default function HomeScreen(){
 
     const [data, setData] = useState(null);
 
+    // useEffect(() => {
+    //   getAllMovies().then(
+    //     response => setData(response)
+    //   )
+    // });
     useEffect(() => {
       getAllMovies().then(
         response => setData(response)
       )
-    });
+    },[])
 
-    const navigationProperty = useNavigation();
+    const navigation = useNavigation();
 
-    const navigation = () => {
-        navigationProperty.navigate('Movie');
-    }
 
-    _loadMovie = () => {
-      getAllMovies().then(
-        data => {
-          console.log("");
-          console.log("the response getted in the home Screen : ");
-          console.log(data);
-          console.log("");
-        }
-      )
-    }
+    // _loadMovie = () => {
+    //   getAllMovies().then(
+    //     data => {
+    //       console.log("");
+    //       console.log("the response getted in the home Screen : ");
+    //       console.log(data);
+    //       console.log("");
+    //     }
+    //   )
+    // }
     
     return (
         <View style={tw`flex-1 bg-neutral-800`}>
@@ -54,8 +56,9 @@ export default function HomeScreen(){
           </Text>      
         
           {/* Search button in the right */}
-          <TouchableOpacity>
-            <MagnifyingGlassIcon size="30" stokeWidth={2} color="white" onPress={this._loadMovie}/>
+          {/* <TouchableOpacity onPress={() => navigation.navigate('Search')}> */}
+          <TouchableOpacity onPress={() => _loadMovie()}>
+            <MagnifyingGlassIcon size="30" stokeWidth={2} color="white"/>
           </TouchableOpacity>
         </View>
       </SafeAreaView>

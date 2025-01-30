@@ -100,7 +100,7 @@ export class ActorFormComponent implements OnInit{
       ).subscribe(
         response => location.reload(),
         error => {
-          alert("Updatae error");
+          alert("Update error");
         }
       );
     }else {
