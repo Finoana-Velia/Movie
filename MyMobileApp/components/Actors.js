@@ -1,5 +1,6 @@
 import tw from 'twrnc';
 import { ScrollView, StyleSheet,Dimensions, Text, TouchableOpacity, View, Image } from "react-native";
+import { getProfile } from '../API/MovieAPI';
 
 var {width,height} = Dimensions.get('window');
 
@@ -25,12 +26,12 @@ export default function Actors({cast,navigation}){
                             <TouchableOpacity
                                 key={index}
                                 style={tw`mr-4 items-center`}
-                                onPress={() => handleNavigation(person)}
+                                onPress={() => handleNavigation(person.id)}
                             >
                                 <View style={tw`overflow-hidden rounded-full h-20 w-20 items-center border border-neutral-500`}>
                                     <View style={styles.imageContent}>
                                     <Image
-                                        source={person.image}
+                                        source={{ uri : getProfile(person.id)}}
                                         style={styles.image}
                                     />
                                     </View>
@@ -41,11 +42,6 @@ export default function Actors({cast,navigation}){
                                         person.name.length > 10 ? person.name.slice(0,10) + '...' : person.name
                                     }
                                 </Text>
-                                {/* <Text style={tw`text-neutral-400 text-xs mt-1`}>
-                                    {
-                                        actorName.length > 10 ? actorName.slice(0,10) + '...' : actorName
-                                    }
-                                </Text> */}
                             </TouchableOpacity>
                         )
                     })

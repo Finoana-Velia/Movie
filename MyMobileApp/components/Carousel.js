@@ -14,14 +14,12 @@ export default function Carousel(){
 
     const [all , setAll] = useState(null);
 
-    
-    const data = actual;
     useEffect(() => {
         getAllMovies().then(
             response => {
                 setTimeout(() => {
                     setAll(response);
-                },10000)
+                },2000)
             }
         )
     },[]);
@@ -44,7 +42,7 @@ export default function Carousel(){
         // </View>
         <View style={tw`mb-8 py-4`}>
             <View style={tw`mx-4 flex-row justify-between items-center`}>
-                <Text style={tw`text-white text-xl`}>New Movies</Text>
+                <Text style={tw`text-white text-xl`}>All movies</Text>
                 <TouchableOpacity
                 >
                     <Text style={tw`text-lg text-white`}>See all</Text>

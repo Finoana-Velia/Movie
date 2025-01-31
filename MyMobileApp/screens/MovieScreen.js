@@ -10,6 +10,8 @@ import Actors from "../components/Actors";
 import { connect } from "react-redux";
 
 import {actor} from '../helpers/data';
+import { getJackets, getMovieById } from "../API/MovieAPI";
+import DisplayLoading from "../components/Loading";
 
 const {width , height} = Dimensions.get('window');
 
@@ -18,15 +20,21 @@ function MovieScreen(props){
     const navigation = useNavigation();
 
     const [isFavorite, toggleFavorite] = useState(false);
-    const [cast , setCast] = useState([1,2,3,4,5]);
     //get the params from the method navigate
     const {params : item} = useRoute();
 
-    const [film , setFilm] = useState(props.route.params);
+    const [film , setFilm] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     
     useEffect(() => {
         //call the movie detail api
+        getMovieById(item).then(
+            response => {
+                setFilm(response);
+                setLoading(true);
+            }
+        )
     },[item]);
 
     const onPutFavorite = () => {
@@ -36,15 +44,14 @@ function MovieScreen(props){
         console.log(props.dispatch(action));
         toggleFavorite(!isFavorite)
     }
-    
+   
     return (
-    
         <ScrollView
             contentContainerStyle={{paddingBottom : 20}}
             style={tw`flex-1 bg-neutral-900`}
         >
-            {/* back button movie poster */}
-            <View style={tw`w-full`}>
+            { loading ?  
+                <View style={tw`w-full`}>
                 <SafeAreaView style={tw`absolute z-20 w-full flex-row justify-between items-center p-4`}>
 
                     <TouchableOpacity 
@@ -66,7 +73,7 @@ function MovieScreen(props){
                 </SafeAreaView>
                 <View>
                     <Image 
-                        source={film.image}
+                        source={{ uri : getJackets(film.id)}}
                         style={{width, height : height*0.55}}
                     />
                     <LinearGradient 
@@ -80,28 +87,31 @@ function MovieScreen(props){
                     <Text style={tw`text-white text-center text-3xl font-bold`}>
                         {film.title}
                     </Text>
-                    <Text style={tw`mt-1 text-neutral-400 font-semibold text-base text-center`}>
+                    {/* <Text style={tw`mt-1 text-neutral-400 font-semibold text-base text-center`}>
                         Released . 2020 . 170min
+                    </Text> */}
+                    <Text style={tw`mt-1 text-neutral-400 font-semibold text-base text-center`}>
+                        {film.release}
+                    </Text>
+                    <Text style={tw`mt-1 text-neutral-400 font-semibold text-base text-center`}>
+                        {film.duration}
                     </Text>
                     <View style={tw`flex-row justify-center mx-4 p-2`}>
                         <Text style={tw`text-neutral-400 font-semibold text-base text-center`}>
-                            Action .
-                        </Text>
-                        <Text style={tw`text-neutral-400 font-semibold text-base text-center`}>
-                            Thrill .
-                        </Text>
-                        <Text style={tw`text-neutral-400 font-semibold text-base text-center`}>
-                            Comedy
+                            {film.type}
                         </Text>
                     </View>
+                    <Text style={tw`text-neutral-400 mx-4 font-semibold text-xl`}>Description</Text>
                     <Text style={tw`text-neutral-400 mx-4`}>
-                        Short description
+                        {film.description}
                     </Text>
                 </View>
 
-                <Actors navigation={navigation} cast={actor}/>
-            </View>
-
+                <Actors navigation={navigation} cast={film.actors}/>
+            </View> :
+            <DisplayLoading />
+            }
+            
         </ScrollView>
     )
 }

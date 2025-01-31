@@ -13,7 +13,7 @@ export default function MovieCard({item}){
     return (
         <TouchableOpacity
             style={tw`flex-1 justify-center items-center`}
-            onPress={() => navigation.navigate('Movie',item)}
+            onPress={() => navigation.navigate('Movie',item.id)}
         >
             <Image 
                 style={styles.image}

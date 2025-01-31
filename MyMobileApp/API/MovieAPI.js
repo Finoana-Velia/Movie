@@ -1,27 +1,36 @@
-const URL = "http://192.168.0.96:8080/api/v1/movies";
+const baseUrl = "http://192.168.0.96:8080";
 
+const movieUrl = baseUrl + "/api/v1/movies";
+const actorUrl = baseUrl + "/api/v1/actor";
+
+/* movie endpoits */
 export async function getAllMovies() {
-    return await fetch(URL).then(async (response) => await response.json())
+    return await fetch(movieUrl).then(async (response) => await response.json())
     .catch((error) => console.warn(error));
 }
 
-// export function getAllMovies() {
-//     return await fetch(URL).then((response) => response.json())
-//     .catch((error) => console.warn(error));
-// }
-
-export function getMovieById(id) {
-    return fetch(URL+`/${id}`).then(response => response.json())
+export async function getMovieById(id) {
+    return await fetch(movieUrl+`/${id}`).then(response => response.json())
     .catch((error) => console.warn(error));
 }
 
-export function searchMovieByTitle(title = '',page = 0,size = 0) {
-    return fetch(URL+`?title=${title}&page=${page}&size=${size}`)
+export function searchMovieByTitle(title = '',size = 5) {
+    return fetch(movieUrl+`?title=${title}&size=${size}`)
     .then(response => response.json())
     .catch(error => console.warn(error));
 }
 
 export function getJackets(id) {
-    return URL + "/jacket?id="+id;
+    return movieUrl + "/jacket?id="+id;
+}
+
+/* actor endpoint */
+export async function getActorById(id) {
+    return await fetch(actorUrl + `/${id}`).then(response => response.json())
+    .catch((error) => console.warn(error));
+}
+
+export function getProfile(id) {
+    return actorUrl + "/getImage?id=" + id;
 }
 

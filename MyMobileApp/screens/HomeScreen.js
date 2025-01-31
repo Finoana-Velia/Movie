@@ -42,7 +42,7 @@ export default function HomeScreen(){
     return (
         <View style={tw`flex-1 bg-neutral-800`}>
       {/* Searchbar and logo*/}
-      <SafeAreaView style={tw`my-10`}>
+      <SafeAreaView style={tw`mt-11 mb-2`}>
         <StatusBar style="light" />
         {/*Bottom navigation with title and the bar icons */}
         <View style={tw`flex-row justify-between items-center mx-4`}>
@@ -56,15 +56,14 @@ export default function HomeScreen(){
           </Text>      
         
           {/* Search button in the right */}
-          {/* <TouchableOpacity onPress={() => navigation.navigate('Search')}> */}
-          <TouchableOpacity onPress={() => _loadMovie()}>
+          <TouchableOpacity onPress={() => navigation.navigate('Search')}>
             <MagnifyingGlassIcon size="30" stokeWidth={2} color="white"/>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{paddingBottom:10}}
+        contentContainerStyle={{paddingBottom:5}}
       >
         
        {/* Content */}
