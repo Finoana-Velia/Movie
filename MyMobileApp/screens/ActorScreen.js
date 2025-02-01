@@ -17,7 +17,6 @@ export default function ActorScreen(props){
     const [movies, setMovies] = useState(null);
 
     const [loading, setLoading] = useState(false);
-    const [loadFilm, setLoadFilm] = useState(false);
     
     const convertDate = (date) => {
         let printDate = date.split("T");
@@ -33,8 +32,9 @@ export default function ActorScreen(props){
         );
         getMoviePlayedByActor(item).then(
             response => {
-                setMovies(response);
-                setLoadFilm(true);
+                setTimeout(() => {
+                    setMovies(response);
+                },2000)
             }
         )
     },[item]);
@@ -93,7 +93,7 @@ export default function ActorScreen(props){
             }
             
             {
-                loadFilm ?
+                movies ?
                 <MovieList title="Playes in" data={movies}/> 
                 : <DisplayLoading />
             }
