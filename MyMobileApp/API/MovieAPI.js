@@ -14,6 +14,11 @@ export async function getMovieById(id) {
     .catch((error) => console.warn(error));
 }
 
+export async function getMoviePlayedByActor(id) {
+    return await fetch(movieUrl + `/actor/${id}`).then(response => response.json())
+    .catch((error) => console.warn(error));
+}
+
 export function searchMovieByTitle(title = '',size = 5) {
     return fetch(movieUrl+`?title=${title}&size=${size}`)
     .then(response => response.json())

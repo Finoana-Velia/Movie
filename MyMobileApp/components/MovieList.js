@@ -11,7 +11,7 @@ export default function MovieList({title,data}) {
     const navigation = useNavigation();
 
     const handleNavigation = (item) => {
-        navigation.navigate('Movie',item);
+        navigation.navigate('Movie',item.id);
     }
 
     return (
@@ -39,7 +39,7 @@ export default function MovieList({title,data}) {
                                 <View style={tw`py-1 mr-4 flex-1 justify-center items-center`}>
                                     <Image 
                                         style={styles.image}
-                                        source={item.image}
+                                        source={{ uri : getJackets(item.id)}}
                                         // source={{ uri : getJackets(item.id)}}
                                     />
                                     <Text style={tw`text-neutral-300 ml-1`}>

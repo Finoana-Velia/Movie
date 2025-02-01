@@ -5,15 +5,19 @@ import { ScrollView, StyleSheet, Image,Text, TouchableOpacity, View } from "reac
 import { ChevronLeftIcon } from "react-native-heroicons/outline";
 import { SafeAreaView } from "react-native-safe-area-context";
 import tw from 'twrnc';
-import { getActorById, getProfile } from "../API/MovieAPI";
+import { getActorById, getMoviePlayedByActor, getProfile } from "../API/MovieAPI";
 import DisplayLoading from "../components/Loading";
+import MovieList from "../components/MovieList";
 
 export default function ActorScreen(props){
     const navigation = useNavigation();
     const {params : item} = useRoute();
 
     const [actorInfo, setActor] = useState(null);
+    const [movies, setMovies] = useState(null);
+
     const [loading, setLoading] = useState(false);
+    const [loadFilm, setLoadFilm] = useState(false);
     
     const convertDate = (date) => {
         let printDate = date.split("T");
@@ -25,9 +29,14 @@ export default function ActorScreen(props){
             response => {
                 setActor(response);
                 setLoading(true);
-                console.log(actorInfo);
             }
-        )   
+        );
+        getMoviePlayedByActor(item).then(
+            response => {
+                setMovies(response);
+                setLoadFilm(true);
+            }
+        )
     },[item]);
 
 
@@ -81,6 +90,12 @@ export default function ActorScreen(props){
 
             </View> : 
             <DisplayLoading />
+            }
+            
+            {
+                loadFilm ?
+                <MovieList title="Playes in" data={movies}/> 
+                : <DisplayLoading />
             }
        </ScrollView>
     )
