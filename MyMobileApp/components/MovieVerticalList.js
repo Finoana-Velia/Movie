@@ -2,10 +2,12 @@ import { useNavigation } from "@react-navigation/native";
 import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import tw from 'twrnc';
 import DisplayLoading from "./Loading";
+import { getJackets } from "../API/MovieAPI";
 
 const {width, height} = Dimensions.get('window');
 
 export default function MovieVerticalList({results}) {
+    
     
     const navigation = useNavigation();
 
@@ -21,11 +23,11 @@ export default function MovieVerticalList({results}) {
                             <TouchableOpacity 
                                 style={tw`flex flex-1 flex-row w-full mt-2`}
                                 key={index}
-                                onPress={() => navigation.navigate('Movie',item)}
+                                onPress={() => navigation.navigate('Movie',item.id)}
                             >
                                 <View style={tw`w-40 h-50 rounded-2`}>
                                     <Image 
-                                        source={item.image}
+                                        source={{ uri : getJackets(item.id)}}
                                         style={styles.image}
                                     />
                                 </View>
@@ -37,12 +39,13 @@ export default function MovieVerticalList({results}) {
                                             }
                                         </Text>
                                         <Text style={tw`text-white font-semibold`}>
-                                            Actions
+                                            {item.type}
                                         </Text>
-                                        <Text style={tw`mt-5 text-white`}>Release</Text>
+                                        <Text style={tw`mt-5 text-white`}>{item.release}</Text>
                                     </View>
                                     <Text style={tw`text-white`}>{item.duration}</Text>
                                 </View>
+                                
                             </TouchableOpacity>
                         )
                     })
