@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit{
 
+  movieActive! : any;
   actions! : any[];
   adventure! : any[];
 
@@ -31,6 +32,7 @@ export class HomeComponent implements OnInit{
     this.movieService.getMovieByType("Adventure").subscribe(
       response => this.adventure = response
     );
+    this.movieActive = this.actions[0];
   }
 
   findPoster(id : number) {
@@ -41,6 +43,9 @@ export class HomeComponent implements OnInit{
     this.router.navigate(['movie',id]);
   }
 
+  changeMovieActive(movie : any) {
+    this.movieActive = movie;
+  }
 
   
 }

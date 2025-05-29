@@ -1,0 +1,5 @@
+com/example/movies/MovieTestConroller.class
+com/example/movies/MovieTestService.class
+com/example/movies/actor/ActorTestController.class
+com/example/movies/actor/ActorTestService.class
+com/example/movies/MoviesBackApplicationTests.class

@@ -1,7 +1,21 @@
+@if(movieActive) {
+    <div class="content-body">
+    <div (click)="goToDetail(movieActive.id)">
+        <div class="display-jacket">
+            <img [src]="findPoster(movieActive.id)" [alt]="movieActive.jacket">
+            <div class="font-background"></div>
+            <div class="biggest-card-content">
+                <h2>{{movieActive.title}} - {{movieActive.type}} - {{movieActive.duration}}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
 <div class="content-body">
     <h1>Action movies</h1>
     <div class="list">
-        <div class="crd" *ngFor="let movie of actions" (click)="goToDetail(movie.id)">
+        <div class="crd" *ngFor="let movie of actions" (click)="changeMovieActive(movie)">
             <div class="crd-jacket" >
                 <img [src]="findPoster(movie.id)" [alt]="movie.jacket"/>
             </div>
@@ -15,7 +29,7 @@
 <div class="content-body">
     <h1>Adventure movies</h1>
     <div class="list">
-        <div class="crd" *ngFor="let movie of adventure" (click)="goToDetail(movie.id)">
+        <div class="crd" *ngFor="let movie of adventure" (click)="changeMovieActive(movie)">
             <div class="crd-jacket" >
                 <img [src]="findPoster(movie.id)" [alt]="movie.jacket"/>
             </div>
