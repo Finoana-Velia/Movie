@@ -5,7 +5,7 @@ import tw from 'twrnc';
 import Carousel from '../components/Carousel';
 import MovieList from '../components/MovieList';
 import { useNavigation } from '@react-navigation/native';
-import { best, boxoffice } from '../helpers/data';
+import DisplayLoading from '../components/Loading';
 import { getAllMovies } from '../API/MovieAPI';
 import { useEffect,useState } from 'react';
 
@@ -14,30 +14,23 @@ export default function HomeScreen(){
 
     const [data, setData] = useState(null);
 
-    // useEffect(() => {
-    //   getAllMovies().then(
-    //     response => setData(response)
-    //   )
-    // });
     useEffect(() => {
       getAllMovies().then(
-        response => setData(response)
+        response => {
+          setTimeout(() => {
+          setData(response);
+          },2000)
+        }
       )
     },[])
 
     const navigation = useNavigation();
 
-
-    // _loadMovie = () => {
-    //   getAllMovies().then(
-    //     data => {
-    //       console.log("");
-    //       console.log("the response getted in the home Screen : ");
-    //       console.log(data);
-    //       console.log("");
-    //     }
-    //   )
-    // }
+    const _displayLoading = () => {
+        return (
+            <DisplayLoading />
+        );
+    }
     
     return (
         <View style={tw`flex-1 bg-neutral-800`}>
@@ -69,9 +62,11 @@ export default function HomeScreen(){
        {/* Content */}
 
        <Carousel />
+
+       {data ? <MovieList title="Actions" data={data}/> : _displayLoading()}
+       {data ? <MovieList title="Adventure" data={data}/> : _displayLoading()}
        
-       {/* <MovieList title="Best of" data={best}/>
-       <MovieList title="Box office" data={boxoffice}/> */}
+       {/* <MovieList title="Adventure" data={data}/> */}
        {/* <MovieList title="test" data={data} /> */}
 
       </ScrollView>

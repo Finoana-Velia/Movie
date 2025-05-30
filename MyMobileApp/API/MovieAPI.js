@@ -1,4 +1,4 @@
-const baseUrl = "http://192.168.0.96:8080";
+const baseUrl = "http://192.168.88.249:8080";
 
 const movieUrl = baseUrl + "/api/v1/movies";
 const actorUrl = baseUrl + "/api/v1/actor";

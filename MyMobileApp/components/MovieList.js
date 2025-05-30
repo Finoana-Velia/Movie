@@ -7,7 +7,6 @@ var {width,height} = Dimensions.get('window');
 
 export default function MovieList({title,data}) {
 
-    var movieName = "Ant man et la guepe";
     const navigation = useNavigation();
 
     const handleNavigation = (item) => {

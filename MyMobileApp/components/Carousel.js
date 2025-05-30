@@ -40,7 +40,7 @@ export default function Carousel(){
         //         //pagingEnabled={true}
         //     />
         // </View>
-        <View style={tw`mb-8 py-4`}>
+        <View style={tw`mb-8 py-2`}>
             <View style={tw`mx-4 flex-row justify-between items-center`}>
                 <Text style={tw`text-white text-xl`}>All movies</Text>
                 <TouchableOpacity
